@@ -41,10 +41,12 @@ def save_images(payload):
         client = MongoClient("mongodb://192.168.10.37:27017/")
         db = client["photos"]
         collection = db["images"]
+        current_time = time.localtime()
+        formatted_time = time.strftime("%Y-%m-%d %H:%M:%S", current_time)
         image_data = {  
             "filename": f"received_image_{pictures}.jpg",
             "data": payload,
-            "timestamp" : time.time()
+            "timestamp" : formatted_time
         }
         collection.insert_one(image_data)
         
