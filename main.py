@@ -38,7 +38,7 @@ def save_images(payload):
     with open(f"received_image_{pictures}.jpg", "wb") as f:
         f.write(payload)
         logger.info(f"Image received and saved as 'received_image_{pictures}.jpg'")
-        client = MongoClient("mongodb://192.168.10.37:27017/")
+        client = MongoClient("mongodb://mongodb:27017/")
         db = client["photos"]
         collection = db["images"]
         current_time = time.localtime()
