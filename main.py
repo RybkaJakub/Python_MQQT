@@ -5,7 +5,7 @@ import time
 
 mqtt_server = '10.59.10.113'
 port = 1883
-client_id = 'Jira'
+client_id = 'Kubyk'
 topic_sub = '#'
 logging.basicConfig(format='%(asctime)s %(message)s', level=logging.INFO)
 logging.getLogger('pika').setLevel(logging.WARNING)
@@ -49,10 +49,12 @@ def save_images(payload):
             "timestamp" : formatted_time
         }
         collection.insert_one(image_data)
+        logger.info(f"Image 'received_image_{pictures}.jpg' is saved in database.")
         
         pictures -= 1
         if pictures == 0:
             pictures = 10
+        f.close()
 
 def main():
     client = connect_mqtt()
