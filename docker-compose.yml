@@ -1,0 +1,12 @@
+services:
+  app:
+    build: .
+    depends_on:
+      - db
+  db:
+    image: mongo
+    container_name: db
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_URI: mongodb://mongodb:27017/
